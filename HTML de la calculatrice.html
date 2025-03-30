@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Calculatrice Basique</title>
+  <link rel="stylesheet" href="CSS de la calculatrice.css">
+</head>
+<body>
+  <div class="calculator">
+    <input type="text" id="display" readonly>
+    <div class="buttons">
+      <button onclick="appendValue('7')" class="numbers">7</button>
+      <button onclick="appendValue('8')" class="numbers">8</button>
+      <button onclick="appendValue('9')" class="numbers">9</button>
+      <button onclick="appendValue('/')" class="operator">÷</button>
+      
+      <button onclick="appendValue('4')" class="numbers">4</button>
+      <button onclick="appendValue('5')" class="numbers">5</button>
+      <button onclick="appendValue('6')" class="numbers">6</button>
+      <button onclick="appendValue('*')" class="operator">×</button>
+      
+      <button onclick="appendValue('1')" class="numbers">1</button>
+      <button onclick="appendValue('2')" class="numbers">2</button>
+      <button onclick="appendValue('3')" class="numbers">3</button>
+      <button onclick="appendValue('-')" class="operator">-</button>
+      
+      <button onclick="appendValue('0')" class="numbers">0</button>
+      <button onclick="appendValue('(')" class="Parenthèse">(</button>
+      <button onclick="appendValue(')')" class="Parenthèse">)</button>
+      <button onclick="appendValue('+')" class="operator">+</button>
+
+      
+      <button onclick="appendValue('.')" id="point">.</button>
+      <button onclick="Inversion()" id="Inversion">-/+</button>
+      <button class="OneClear" onclick="OneClearDisplay()">⌫</button>
+      <button class="clear" onclick="clearDisplay()">C</button>
+
+      <button onclick="calculate()" id="Equal">=</button>
+    </div>
+  </div>
+  <script src="JS de la calculatrice.js"></script>*
+  <script>
+    function testJS(){
+      const myObject = {
+        "name" : "Eddy",
+        "fonction" : "Prof",
+      }
+      console.log(myObject);
+    }
+  </script>
+</body>
+</html>

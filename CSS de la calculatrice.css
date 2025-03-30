@@ -1,0 +1,101 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #f2f2f2;
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  .calculator {
+    background-image: url('fond fleur.jpeg');
+    background-size: cover;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px #ccc;
+    width: 260px;
+  }
+  
+  #display {
+    width: 95%;
+    height: 50px;
+    margin-bottom: 10px;
+    text-align: right;
+    font-size: 24px;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  .buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+  }
+  
+  .buttons button {
+    padding: 20px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.2s;
+    border: 1px solid black;
+  } 
+  .clear {
+    grid-column: span 1;
+    background: #ff7675;
+    color: #000000;
+  }
+  .clear:hover {
+    background-color: #ff4848;
+  }
+  .OneClear {
+    grid-column: span 1;
+    background: #ff7675;
+    color: #000000;
+  }
+  .OneClear:hover {
+    background-color: #ff4848;
+  }
+  .operator {
+    background-color: rgb(255, 116, 66);
+  }
+  .operator:hover {
+    background-color: orangered;
+  }
+  #Equal {
+    grid-column: span 2;
+    background-color: greenyellow;
+  }
+  #Equal:hover {
+    background-color: green;
+  }
+  .numbers {
+    background-color: white
+  }
+  .numbers:hover {
+    background-color: #a5a5a5;
+  }
+  #point {
+    grid-column: span 1;
+    background-color: white;
+  }
+  #point:hover {
+    background-color: rgb(255, 241, 46);
+  }
+  .Parenthèse {
+    background-color: aqua;
+  }
+  .Parenthèse:hover {
+    background-color: rgb(0, 181, 181);
+  }
+  #Inversion {
+    background-color: white;
+  }
+  #Inversion:hover {
+    background-color: black;
+    color: white;
+  }
+
