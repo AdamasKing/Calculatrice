@@ -46,18 +46,19 @@ function appendValue(val) {
     }
     lastOpe = val;
   }
-  if (display.value.includes("(")) {
-  }
   document.getElementById("display").value += val;
 }
 function Inversion() {
   const display = document.getElementById("display");
   let currentValue = display.value;
 
-  if (currentValue[0] === "-") {
-    display.value = currentValue.slice(1);
+  if (lastOpe === "") {
+    if (currentValue[0] === "-") {
+      display.value = currentValue.slice(1);
+    } else {
+      display.value = "-" + currentValue;
+    }
   } else {
-    display.value = "-" + currentValue;
   }
 }
 function calculate() {
