@@ -46,6 +46,9 @@ function appendValue(val) {
     }
     lastOpe = val;
   }
+  if (display.value === "" && ope.includes(val)) {
+    return;
+  }
   document.getElementById("display").value += val;
 }
 function Inversion() {
