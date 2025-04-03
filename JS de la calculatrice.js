@@ -1,6 +1,7 @@
 var ope = ["+", "-", "/", "*", "."];
 var zero = "0";
 var lastOpe = "";
+var inverse = "-";
 // Liste des touches du clavier et leurs valeurs correspondantes
 const keyMapping = {
   0: "0",
@@ -51,19 +52,40 @@ function appendValue(val) {
   }
   document.getElementById("display").value += val;
 }
+
 function Inversion() {
   const display = document.getElementById("display");
   let currentValue = display.value;
+  let lastOperatorIndex = -1;
 
-  if (lastOpe === "") {
-    if (currentValue[0] === "-") {
-      display.value = currentValue.slice(1);
-    } else {
-      display.value = "-" + currentValue;
+  if (currentValue === "") {
+    display.value = "(-" + display.value + ")";
+  }
+  if (inverse.includes.startsWith())
+    // Trouver le dernier opérateur
+    for (let i = currentValue.length - 1; i >= 0; i--) {
+      if (ope.includes(currentValue[i])) {
+        lastOperatorIndex = i;
+        break;
+      }
     }
+
+  if (lastOperatorIndex === currentValue.length - 1) {
+    return; // Empêcher l'inversion si le dernier caractère est un opérateur
+  }
+
+  let lastNumber = currentValue.slice(lastOperatorIndex + 1);
+
+  // Vérifier si le dernier nombre est déjà négatif
+  if (lastNumber.startsWith("-")) {
+    display.value =
+      currentValue.slice(0, lastOperatorIndex + 1) + lastNumber.slice(1);
   } else {
+    display.value =
+      currentValue.slice(0, lastOperatorIndex + 1) + "-" + lastNumber;
   }
 }
+
 function calculate() {
   const display = document.getElementById("display");
   if (display.value === "0+0") {
