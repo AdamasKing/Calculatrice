@@ -25,7 +25,7 @@ const keyMapping = {
   Enter: "=",
   " ": "C",
   Backspace: "⌫",
-  "±": "±",
+  i: "±",
 };
 
 function appendValue(val) {
@@ -33,10 +33,9 @@ function appendValue(val) {
   if (display.value === "Erreur") {
     display.value = "";
   }
-  if (display.value[0] === "0") {
-    if (display.value[1] === "val") {
-      display.value[0] = "";
-    }
+  if (display.value === "0" && !ope.includes(val)) {
+    display.value = val;
+    return;
   }
   if (ope.includes(val) && ope.includes(lastChar)) {
     return;
@@ -56,33 +55,42 @@ function appendValue(val) {
 function Inversion() {
   const display = document.getElementById("display");
   let currentValue = display.value;
-  let lastOperatorIndex = -1;
+  let lastNumberStarIndex = 0;
+  const lastChar = display.value.slice(-1);
 
-  if (currentValue === "") {
-    display.value = "(-" + display.value + ")";
+  if (
+    currentValue.value === "-" ||
+    currentValue === "Erreur" ||
+    ope.includes(lastChar)
+  ) {
+    if (currentValue === "-") {
+      display.value = "";
+    }
+    return;
   }
-  if (inverse.includes.startsWith())
-    // Trouver le dernier opérateur
-    for (let i = currentValue.length - 1; i >= 0; i--) {
-      if (ope.includes(currentValue[i])) {
-        lastOperatorIndex = i;
+
+  for (let i = currentValue.length - 1; i >= 0; i--) {
+    if (ope.includes(currentValue[i])) {
+      lastNumberStarIndex = i + 1;
+      break;
+    }
+    if (currentValue[i] === "-") {
+      if (i === 0) {
+        lastNumberStarIndex = 0;
         break;
       }
     }
-
-  if (lastOperatorIndex === currentValue.length - 1) {
-    return; // Empêcher l'inversion si le dernier caractère est un opérateur
   }
 
-  let lastNumber = currentValue.slice(lastOperatorIndex + 1);
+  let prefix = currentValue.slice(0, lastNumberStarIndex);
+  let lastNumber = currentValue.slice(lastNumberStarIndex);
 
-  // Vérifier si le dernier nombre est déjà négatif
-  if (lastNumber.startsWith("-")) {
-    display.value =
-      currentValue.slice(0, lastOperatorIndex + 1) + lastNumber.slice(1);
+  if (lastNumber.startsWith("(-") && lastNumber.endsWith(")")) {
+    let positiveNumber = lastNumber.slice(2, -1);
+    display.value = prefix + (positiveNumber === "" ? "" : positiveNumber);
   } else {
     display.value =
-      currentValue.slice(0, lastOperatorIndex + 1) + "-" + lastNumber;
+      prefix + (lastNumber === "0" ? "(-0)" : "(-" + lastNumber + ")");
   }
 }
 
@@ -94,7 +102,6 @@ function calculate() {
     display.value = "Euh..., Ok mec";
   } else {
     try {
-      // Utilisation de eval pour le calcul (attention en production pour des raisons de sécurité)
       display.value = eval(display.value);
     } catch (e) {
       display.value = "Erreur";
@@ -126,7 +133,7 @@ function handleKeyboardEvent(event) {
       clearDisplay();
     } else if (key === "Enter") {
       calculate();
-    } else if (key === "±") {
+    } else if (key === "i") {
       Inversion();
     } else {
       // Ajouter la valeur à l'affichage
